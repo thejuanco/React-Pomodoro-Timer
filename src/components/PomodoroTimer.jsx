@@ -25,19 +25,19 @@ const PomodoroTimer = () => {
       interval = setInterval(() => {
         setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
       }, 1000);
-    } else if(time === 0){
-      if(isWork){
-        if(cycle < TOTAL_CYCLES){
+    } else if (time === 0) {
+      if (isWork) {
+        if (cycle < TOTAL_CYCLES) {
           setTime(BREAK_TIME);
           setCycle((newCycle) => newCycle + 1);
-        } else if(cycle == TOTAL_CYCLES){
-          setTime(LONG_TIME)
-          setCycle(1)
+        } else if (cycle == TOTAL_CYCLES) {
+          setTime(LONG_TIME);
+          setCycle(1);
         }
       } else {
-        setTime(WORK_TIME)
+        setTime(WORK_TIME);
       }
-      setIsWork(prevIsWork => !prevIsWork)
+      setIsWork((prevIsWork) => !prevIsWork);
     }
 
     return () => interval ? clearInterval(interval) : null
