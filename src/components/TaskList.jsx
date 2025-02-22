@@ -9,9 +9,14 @@ const TaskList = () => {
     e.preventDefault();
 
     try {
+      //Valida que no este vacío el input
+      if(task === "") return;
+      //Se agrega la tarea al formulario
       setTasks(prevTask => {
         return [...prevTask, task]
       })
+      //Agregada la tarea se limpia el formulario
+      setTask("")
     } catch (error) {
       console.log(error)
     }
@@ -41,9 +46,12 @@ const TaskList = () => {
               <>
                 {tasks.map(newTask => (
                   <div className="mx-3 mt-4">
-                    <p className="text-gray-400">{newTask}</p>
+                    <p className="text-gray-100">{newTask}</p>
                   </div>
                 ))}
+                <div className="m-3">
+                  <p className="text-gray-500">0 de 0 tareas completadas</p>
+                </div>
               </>
             ) : (
               <div className="flex justify-center items-center m-12">
