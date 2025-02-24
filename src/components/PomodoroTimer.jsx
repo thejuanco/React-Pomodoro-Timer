@@ -45,6 +45,11 @@ const PomodoroTimer = () => {
     return () => interval ? clearInterval(interval) : null
   }, [isActive, time, isWork, cycle])
 
+  //Modifica dinamicamente el title
+  useEffect(() => {
+    document.title = `${formatTime(time)} | Pomodoro Zen `
+  }, [time])
+
   const toggleTimer = () => {
     setIsActive(!isActive)
   }
