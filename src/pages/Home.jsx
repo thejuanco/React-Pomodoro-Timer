@@ -5,7 +5,7 @@ import NavHome from '../components/NavHome';
 const Home = () => {
   return (
     <>
-      <NavHome />
+      {/* <NavHome /> */}
       <div>
         <h2 className="mx-auto mt-28 mb-10 font-bold text-4xl text-gray-300 text-center">
           Reloj pomodoro

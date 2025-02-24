@@ -6,7 +6,7 @@ const NavHome = () => {
         <div className="flex items-center space-x-4">
             <h1 className="font-semibold text-xl text-white">Pomodoro Zen</h1>
         </div>
-        <div className="flex space-x-6 text-white">
+        <div className="flex space-x-6 text-gray-200">
             <Link>Inicia Sesión</Link>
             <Link>Crear Cuenta</Link>
         </div>
