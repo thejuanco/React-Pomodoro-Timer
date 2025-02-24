@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
+import useCounter from '../hooks/useCounter';
 
 const PomodoroTimer = () => {
 
+  //const { time, setTime, WORK_TIME } = useCounter();
   const WORK_TIME = 25 * 60;
   const BREAK_TIME = 5 * 60;
   const LONG_TIME = 15 * 60;
   const TOTAL_CYCLES = 4;
 
-  const [time, setTime] = useState(WORK_TIME);
+  const [time, setTime ] = useState(WORK_TIME)
   const [isActive, setIsActive] = useState(false);
   const [isWork, setIsWork] = useState(true);
   const [cycle, setCycle] = useState(1);
@@ -42,6 +44,11 @@ const PomodoroTimer = () => {
 
     return () => interval ? clearInterval(interval) : null
   }, [isActive, time, isWork, cycle])
+
+  //Modifica dinamicamente el title
+  useEffect(() => {
+    document.title = `${formatTime(time)} | Pomodoro Zen `
+  }, [time])
 
   const toggleTimer = () => {
     setIsActive(!isActive)
