@@ -24,8 +24,17 @@ const PomodoroTimer = () => {
     let interval = null;
 
     if (isActive && time > 0) {
+      const startTime = Date.now(); // Guarda el tiempo en que inicia el temporizador
+      const targetTime = startTime + time * 1000; // Calcula el tiempo objetivo en milisegundos
+
       interval = setInterval(() => {
-        setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+        const now = Date.now();
+        const remaining = Math.max(0, Math.round((targetTime - now) / 1000)); // Calcula el tiempo restante
+        setTime(remaining);
+
+        if (remaining === 0) {
+          clearInterval(interval);
+        }
       }, 1000);
     } else if (time === 0) {
       if (isWork) {
@@ -42,7 +51,7 @@ const PomodoroTimer = () => {
       setIsWork((prevIsWork) => !prevIsWork);
     }
 
-    return () => interval ? clearInterval(interval) : null
+    return () => clearInterval(interval)
   }, [isActive, time, isWork, cycle])
 
   //Modifica dinamicamente el title
