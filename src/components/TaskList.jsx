@@ -1,8 +1,9 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 const TaskList = () => {
 
   const [tasks, setTasks] = useState([])
+  const [completeTask, setCompleteTask] = useState([])
   const [task, setTask] = useState("")
 
   const handleSubmit = (e) => {
@@ -21,9 +22,10 @@ const TaskList = () => {
       console.log(error)
     }
   }
+
   return (
     <>
-      <div className="w-full sm:w-1/2 md:w-1/3 bg-gray-800 border-2 border-gray-700 text-white rounded-lg p-3">
+      <div className="w-full sm:w-1/2 md:w-1/3 bg-gray-800 border-2 mb-4 border-gray-700 text-white rounded-lg p-3">
         <h1 className="text-center text-2xl font-bold mt-2 text-blue-400">
           Tareas
         </h1>
@@ -47,13 +49,13 @@ const TaskList = () => {
           <div>
             {tasks.length > 0 ? (
               <>
-                {tasks.map((newTask) => (
-                  <div className="mx-3 flex items-center space-x-3">
-                    <label class="flex items-center cursor-pointer relative">
+                {tasks.map((newTask, index) => (
+                  <div key={index} className="mx-3 py-1 flex items-center space-x-3">
+                    <label className="flex items-center cursor-pointer relative">
                       <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-200 checked:bg-slate-800 checked:border-slate-200" id="check" />
-                      <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" strokeWidth="1">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                         </svg>
                       </span>
                     </label>
@@ -69,7 +71,9 @@ const TaskList = () => {
                   </div>
                 ))}
                 <div className="m-3">
-                  <p className="text-gray-500">0 de 0 tareas completadas</p>
+                  <p className="text-gray-500">
+                    {completeTask.length} de {tasks.length} tareas completadas
+                  </p>
                 </div>
               </>
             ) : (
