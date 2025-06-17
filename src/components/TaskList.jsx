@@ -29,7 +29,7 @@ const TaskList = () => {
         </h1>
         <div className="">
           <form onSubmit={handleSubmit}>
-            <div className="flex mx-3 justify-between space-x-2 mt-6 mb-2">
+            <div className="flex mx-3 justify-between space-x-2 mt-6 mb-4">
               <input
                 className="bg-gray-700 p-2 w-full rounded-md"
                 placeholder="Agrega una nueva tarea"
@@ -48,8 +48,15 @@ const TaskList = () => {
             {tasks.length > 0 ? (
               <>
                 {tasks.map((newTask) => (
-                  <div className="mx-3 flex items-center space-x-2">
-                    <input type="checkbox" className="w-5 h-5 text-gray-600 bg-gray-800 border-gray-900 rounded focus:ring-blue-900"/>
+                  <div className="mx-3 flex items-center space-x-3">
+                    <label class="flex items-center cursor-pointer relative">
+                      <input type="checkbox" className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-200 checked:bg-slate-800 checked:border-slate-200" id="check" />
+                      <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                    </label>
                     <p className="text-gray-100">{newTask}</p>
                     <button 
                       className="hover:bg-gray-700 p-1 rounded-lg"
