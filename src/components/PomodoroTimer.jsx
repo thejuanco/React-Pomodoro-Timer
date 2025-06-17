@@ -72,13 +72,13 @@ const PomodoroTimer = () => {
   return (
     <>
       <div className="w-full md:w-1/3 bg-gray-800 border-2 border-gray-700 text-white rounded-lg p-3">
-        <h1 className="text-center text-xl font-bold mt-2 text-blue-400">{isWork ? "Trabajo" : "Descanso"}</h1>
+        <h1 className="text-center text-2xl font-bold mt-2 text-blue-400">{isWork ? "Enfocado" : "Descanso"}</h1>
         <div className="flex flex-col items-center space-y-4 p-2">
           <span className="font-bold text-6xl mt-8">{formatTime(time)}</span>
           <p className="text-gray-300">Ciclo: {cycle} / {TOTAL_CYCLES}</p>
           <div className="m-2 flex space-x-4">
             <button 
-              className="bg-white text-gray-900 py-2 px-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-gray-100"
+              className="bg-white text-gray-900 py-2 px-4 rounded-full font-semibold hover:bg-gray-300"
               onClick={() => {
                 toggleTimer()
               }}
@@ -86,7 +86,7 @@ const PomodoroTimer = () => {
               {isActive ? "Pausar" : "Iniciar"}
             </button>
             <button 
-              className="bg-white text-gray-900 py-2 px-3 rounded-lg font-semibold hover:bg-gray-200"
+              className="bg-gray-100 py-2 px-4 font-semibold text-gray-900 rounded-full hover:bg-gray-300"
               onClick={() => resetTimer()}
             >
               reiniciar
