@@ -4,7 +4,10 @@ const TaskList = () => {
 
   const [tasks, setTasks] = useState([])
   const [completeTask, setCompleteTask] = useState([])
-  const [isChecked, setIsChecked] = useState(false)
+  //Utilizamos el metodo fill para rellenar los datos con un valor especifico (bool)
+  const [isChecked, setIsChecked] = useState(
+    new Array(tasks.length).fill(false)
+  )
   const [task, setTask] = useState({
     id: Date.now(),
     description: "",
@@ -34,8 +37,14 @@ const TaskList = () => {
 
   const isCompletedTask = (tTask) => {
     try {
-      console.log(tTask)
-      console.log(isChecked)
+      //Extraemos el id de la tarea
+      const { id } = tTask
+      //Recorremos el arreglo y si son iguales los valores los modificamos
+      const updateCompletedTask = isChecked.map((item, index) => index === id ? !item : item)
+      setIsChecked(updateCompletedTask)
+
+      console.log(tTask, isChecked)
+      console.log(id)
     } catch (error) {
       console.log(tTask)
     }
@@ -77,11 +86,8 @@ const TaskList = () => {
                       <input 
                         id="check" 
                         type="checkbox"
-                        checked={isChecked}
-                        onChange={() => {
-                          isCompletedTask(newTask)
-                          setIsChecked(!isChecked)
-                        }}
+                        checked={isChecked[index]}
+                        onChange={() => isCompletedTask(newTask)}
                         className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-200 checked:bg-slate-800 checked:border-slate-200" 
                       />
                       <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -103,7 +109,7 @@ const TaskList = () => {
                 ))}
                 <div className="m-3">
                   <p className="text-gray-500">
-                    {completeTask.length} de {tasks.length} tareas completadas
+                    0 de {tasks.length} tareas completadas
                   </p>
                 </div>
               </>
