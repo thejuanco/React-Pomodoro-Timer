@@ -3,10 +3,9 @@ import {useEffect, useState} from 'react'
 const TaskList = () => {
 
   const [tasks, setTasks] = useState([])
-  const [completeTask, setCompleteTask] = useState([])
   //Utilizamos el metodo fill para rellenar los datos con un valor especifico (bool)
   const [isChecked, setIsChecked] = useState(
-    new Array(tasks.length).fill(false)
+    new Array(tasks.length)
   )
   const [task, setTask] = useState({
     id: Date.now(),
@@ -37,16 +36,15 @@ const TaskList = () => {
 
   const isCompletedTask = (tTask) => {
     try {
-      //Extraemos el id de la tarea
-      const { id } = tTask
-      //Recorremos el arreglo y si son iguales los valores los modificamos
-      const updateCompletedTask = isChecked.map((item, index) => index === id ? !item : item)
-      setIsChecked(updateCompletedTask)
-
-      console.log(tTask, isChecked)
-      console.log(id)
+      setTasks(prev =>
+        prev.map(task =>
+          task.id === tTask.id
+            ? { ...task, isCompleted: !task.isCompleted }
+            : task
+        )
+      );
     } catch (error) {
-      console.log(tTask)
+      console.log(error)
     }
   }
 
@@ -96,7 +94,7 @@ const TaskList = () => {
                         </svg>
                       </span>
                     </label>
-                    <p className={`text-gray-100`}>{newTask.description}</p>
+                    <p className={newTask.isCompleted ? `text-gray-400 line-through` :`text-gray-100` }>{newTask.description}</p>
                     <button 
                       className="hover:bg-gray-700 p-1 rounded-lg"
                       onClick={() => console.log("Eliminando")}
