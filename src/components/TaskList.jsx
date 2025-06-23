@@ -48,6 +48,8 @@ const TaskList = () => {
     }
   }
 
+  const completeTask = tasks.filter((t) => t.isCompleted == true).length
+
   return (
     <>
       <div className="w-full sm:w-1/2 md:w-1/3 bg-gray-800 border-2 mb-4 border-gray-700 text-white rounded-lg p-3">
@@ -107,7 +109,7 @@ const TaskList = () => {
                 ))}
                 <div className="m-3">
                   <p className="text-gray-500">
-                    0 de {tasks.length} tareas completadas
+                    {completeTask} de {tasks.length} tareas completadas
                   </p>
                 </div>
               </>
